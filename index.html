@@ -3,927 +3,846 @@
 <html lang="fr">
 
 <head>
-    <!-- ================================= -->
-    <!-- 1. CONFIGURATION DU SITE          -->
-    <!-- ================================= -->
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ACMH | Athletic Club de Magny-les-Hameaux</title>
-
-    <meta name="description" content="Découvrez l'Athletic Club de Magny-les-Hameaux, son histoire, ses ambitions et son projet sportif.">
-
-    <!-- POLICES -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-
-
-    <!-- ================================= -->
-    <!-- 2. STYLE DU SITE (CSS)            -->
-    <!-- ================================= -->
-
-    <style>
-
-        /* COULEURS PRINCIPALES */
-
-        :root {
-            --jaune: #ffdf00;
-            --noir: #050505;
-            --gris: #171717;
-            --blanc: #ffffff;
-        }
-
-
-        /* CONFIGURATION GÉNÉRALE */
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            background-color: var(--noir);
-            color: var(--blanc);
-            font-family: 'Orbitron', sans-serif;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        section {
-            scroll-margin-top: 90px;
-        }
-
-
-        /* ANIMATIONS */
-
-        @keyframes fondu {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .apparition {
-            animation: fondu 1.2s ease forwards;
-        }
-
-
-        /* ================================= */
-        /* 3. BARRE DE NAVIGATION            */
-        /* ================================= */
-
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-            height: 75px;
-            background: rgba(5, 5, 5, 0.97);
-            border-bottom: 1px solid var(--jaune);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 25px;
-        }
-
-        .header-logo {
-            color: var(--jaune);
-            font-size: 23px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-
-        /* BOUTON HAMBURGER */
-
-        .menu-toggle {
-            width: 45px;
-            height: 45px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 7px;
-            z-index: 1002;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--jaune);
-            border-radius: 3px;
-            transition: 0.3s;
-        }
-
-        /* Transformation en croix */
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: translateY(10px) rotate(45deg);
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: translateY(-10px) rotate(-45deg);
-        }
-
-
-        /* MENU DÉROULANT */
-
-        .menu {
-            position: absolute;
-            top: 74px;
-            right: 0;
-            width: 280px;
-            padding: 20px;
-            background: #101010;
-            border: 1px solid var(--jaune);
-            border-top: none;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: 0.3s ease;
-        }
-
-        .menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .menu a {
-            padding: 15px;
-            color: white;
-            font-size: 13px;
-            font-weight: bold;
-            border-bottom: 1px solid #333;
-            transition: 0.2s;
-        }
-
-        .menu a:hover {
-            background: var(--jaune);
-            color: black;
-            padding-left: 22px;
-        }
-
-
-        /* ================================= */
-        /* 4. PRÉSENTATION PRINCIPALE        */
-        /* ================================= */
-
-        .accueil {
-            text-align: center;
-            padding: 65px 20px 80px;
-        }
-
-        .logo-principal {
-            width: 400px;
-            max-width: 90%;
-            height: auto;
-            display: block;
-            margin: 0 auto 25px;
-            animation: fondu 2s ease forwards;
-        }
-
-        h1 {
-            color: var(--jaune);
-            font-size: 25px;
-            font-weight: 900;
-            margin: 20px 0;
-            animation: fondu 2s ease forwards;
-        }
-
-        .devise {
-            color: var(--jaune);
-            font-family: 'Permanent Marker', cursive;
-            font-size: 20px;
-            margin-top: 25px;
-        }
-
-
-        /* ================================= */
-        /* 5. TITRES DES RUBRIQUES           */
-        /* ================================= */
-
-        .titre-section {
-            color: var(--jaune);
-            text-align: center;
-            font-size: 23px;
-            font-weight: 900;
-            margin-bottom: 35px;
-            letter-spacing: 2px;
-        }
-
-        .sous-titre {
-            color: var(--jaune);
-            text-align: center;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 18px;
-            padding: 0 15px;
-        }
-
-
-        /* ================================= */
-        /* 6. ACTUALITÉS                     */
-        /* ================================= */
-
-        .actualites {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .actualite-vide {
-            max-width: 700px;
-            margin: auto;
-            padding: 35px 20px;
-            background: var(--gris);
-            border: 1px solid #333;
-            border-left: 4px solid var(--jaune);
-        }
-
-        .actualite-vide p {
-            color: #ccc;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 18px;
-        }
-
-
-        /* ================================= */
-        /* 7. RUBRIQUES DU SITE              */
-        /* ================================= */
-
-        .rubriques {
-            padding: 50px 20px;
-        }
-
-        .rubriques-container {
-            max-width: 1000px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .rubrique {
-            background: var(--gris);
-            border: 1px solid #333;
-            padding: 30px 15px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .rubrique:hover {
-            border-color: var(--jaune);
-            transform: translateY(-5px);
-        }
-
-        .rubrique h3 {
-            color: var(--jaune);
-            font-size: 16px;
-        }
-
-        .rubrique p {
-            color: #aaa;
-            font-size: 11px;
-            line-height: 1.8;
-        }
-
-
-        /* ================================= */
-        /* 8. PRÉSENTATION ET FAQ            */
-        /* ================================= */
-
-        .presentation {
-            padding: 60px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        details {
-            background: var(--gris);
-            border: 1px solid #333;
-            border-left: 3px solid var(--jaune);
-            margin: 15px 0;
-            padding: 18px;
-            transition: 0.3s;
-        }
-
-        details[open] {
-            border-color: var(--jaune);
-        }
-
-        summary {
-            color: var(--jaune);
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.8;
-        }
-
-        details p {
-            color: #ddd;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 16px;
-            line-height: 1.8;
-            padding: 10px 5px;
-        }
-
-        details img {
-            max-width: 120px;
-            height: auto;
-        }
-
-
-        /* ================================= */
-        /* 9. RUBRIQUES EN PRÉPARATION       */
-        /* ================================= */
-
-        .en-preparation {
-            padding: 65px 20px;
-            text-align: center;
-            background: #101010;
-        }
-
-        .en-preparation p {
-            color: #aaa;
-            font-size: 13px;
-            line-height: 2;
-        }
-
-
-        /* ================================= */
-        /* 10. PIED DE PAGE                  */
-        /* ================================= */
-
-        footer {
-            text-align: center;
-            padding: 45px 20px;
-            border-top: 1px solid var(--jaune);
-            background: #080808;
-        }
-
-        footer p {
-            color: var(--jaune);
-            font-family: 'Permanent Marker', cursive;
-            font-size: 18px;
-        }
-
-        footer small {
-            color: #777;
-            font-size: 10px;
-        }
-
-
-        /* ================================= */
-        /* 11. ADAPTATION TÉLÉPHONE          */
-        /* ================================= */
-
-        @media (max-width: 650px) {
-
-            .header {
-                padding: 0 15px;
-            }
-
-            .header-logo {
-                font-size: 19px;
-            }
-
-            .accueil {
-                padding: 45px 15px 60px;
-            }
-
-            h1 {
-                font-size: 19px;
-                line-height: 1.6;
-            }
-
-            .devise {
-                font-size: 16px;
-            }
-
-            .titre-section {
-                font-size: 19px;
-            }
-
-            .rubriques-container {
-                grid-template-columns: 1fr;
-            }
-
-            .menu {
-                width: 100%;
-                right: 0;
-            }
-
-            details p {
-                font-size: 14px;
-            }
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ACMH | Athletic Club de Magny-les-Hameaux</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+<style>
+
+/* ==========================================
+   1. VARIABLES ET BASE
+========================================== */
+
+:root {
+    --yellow: #ffdf00;
+    --yellow-light: #fff36b;
+    --black: #050505;
+    --dark: #101010;
+    --white: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--yellow);
+    color: black;
+}
+
+
+/* ==========================================
+   2. EFFETS GÉNÉRAUX
+========================================== */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+}
+
+@keyframes fondu {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lumiere {
+    0%, 100% {
+        text-shadow: 0 0 8px rgba(255,223,0,.3);
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(255,223,0,.8);
+    }
+}
+
+@keyframes flottement {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* ==========================================
+   3. MENU HAMBURGER
+========================================== */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+    background: rgba(5,5,5,.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,223,0,.35);
+}
+
+.header-name {
+    color: var(--yellow);
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-shadow: 0 0 12px rgba(255,223,0,.4);
+}
+
+.menu-toggle {
+    width: 45px;
+    height: 45px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    z-index: 102;
+}
+
+.menu-toggle span {
+    height: 3px;
+    width: 30px;
+    background: var(--yellow);
+    border-radius: 5px;
+    transition: .35s;
+    box-shadow: 0 0 8px rgba(255,223,0,.4);
+}
+
+.menu-toggle.active span:first-child {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:last-child {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+nav {
+    position: absolute;
+    top: 74px;
+    right: 0;
+    width: 300px;
+    background: rgba(10,10,10,.98);
+    border: 1px solid var(--yellow);
+    border-top: 2px solid var(--yellow);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px);
+    transition: .3s ease;
+    box-shadow: 0 15px 40px rgba(0,0,0,.8);
+}
+
+nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 16px;
+    border-bottom: 1px solid #292929;
+    transition: .25s;
+}
+
+nav a:hover {
+    background: var(--yellow);
+    color: black;
+    padding-left: 25px;
+}
+
+
+/* ==========================================
+   4. ACCUEIL
+========================================== */
+
+.accueil {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 110px 20px 70px;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at center, #26220a 0%, #0a0a0a 48%, #050505 80%);
+}
+
+/* Décoration lumineuse */
+
+.accueil::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border: 1px solid rgba(255,223,0,.12);
+    border-radius: 50%;
+    box-shadow:
+        0 0 80px rgba(255,223,0,.05),
+        inset 0 0 80px rgba(255,223,0,.05);
+}
+
+.accueil::after {
+    position: absolute;
+    bottom: 35px;
+    color: rgba(255,223,0,.12);
+    font-size: clamp(35px, 8vw, 90px);
+    font-weight: 900;
+    letter-spacing: 8px;
+    white-space: nowrap;
+    z-index: 0;
+}
+
+.logo {
+    width: 400px;
+    max-width: 85%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 25px rgba(255,223,0,.35));
+    animation: fondu 2s ease forwards, flottement 6s ease-in-out infinite;
+}
+
+h1 {
+    position: relative;
+    z-index: 1;
+    color: var(--yellow);
+    font-size: clamp(19px, 3vw, 30px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    animation: fondu 2s ease forwards;
+}
+
+.devise {
+    position: relative;
+    z-index: 1;
+    color: var(--yellow-light);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 21px;
+    margin-top: 25px;
+    animation: lumiere 3s infinite;
+}
+
+
+/* ==========================================
+   5. SÉPARATEURS GRAPHIQUES
+========================================== */
+
+.separateur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 35px auto;
+}
+
+.separateur span {
+    width: 70px;
+    height: 2px;
+    background: var(--yellow);
+}
+
+.separateur b {
+    color: var(--yellow);
+    font-size: 20px;
+}
+
+
+/* ==========================================
+   6. TITRES
+========================================== */
+
+h2 {
+    color: var(--yellow);
+    font-size: clamp(21px, 4vw, 30px);
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    animation: lumiere 4s infinite;
+}
+
+.titre-graffiti {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(20px, 4vw, 27px);
+    color: var(--yellow);
+    text-align: center;
+}
+
+
+/* ==========================================
+   7. ACTUALITÉS
+========================================== */
+
+.actualites {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #080808, #111);
+}
+
+.actualite-carte {
+    max-width: 850px;
+    margin: 45px auto 0;
+    padding: 50px 25px;
+    border: 1px solid rgba(255,223,0,.4);
+    background:
+        linear-gradient(135deg, rgba(255,223,0,.07), transparent 50%),
+        #111;
+    box-shadow: 0 0 35px rgba(255,223,0,.05);
+    position: relative;
+}
+
+.actualite-carte::before {
+    content: "ACMH";
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: rgba(255,223,0,.12);
+    font-size: 35px;
+    font-weight: 900;
+}
+
+.actualite-carte p {
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(17px, 3vw, 23px);
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   8. QUESTIONS / PRÉSENTATION
+========================================== */
+
+.presentation {
+    padding: 100px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+details {
+    margin: 18px 0;
+    background: linear-gradient(110deg, #151515, #090909);
+    border: 1px solid #292929;
+    border-left: 4px solid var(--yellow);
+    padding: 20px;
+    transition: .3s;
+}
+
+details:hover {
+    border-color: var(--yellow);
+    box-shadow: 0 0 20px rgba(255,223,0,.08);
+}
+
+summary {
+    color: var(--yellow);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 900;
+    list-style: none;
+    position: relative;
+    padding-right: 25px;
+    line-height: 1.8;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: -4px;
+    font-size: 23px;
+    transition: .3s;
+}
+
+details[open] summary::after {
+    content: "−";
+    transform: rotate(180deg);
+}
+
+details p {
+    color: #d0d0d0;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    line-height: 2;
+    padding: 25px 5px 5px;
+}
+
+details img {
+    width: 110px;
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+    filter: drop-shadow(0 0 10px rgba(255,223,0,.2));
+}
+
+
+/* ==========================================
+   9. PIED DE PAGE
+========================================== */
+
+footer {
+    padding: 65px 20px;
+    text-align: center;
+    background: #080808;
+    border-top: 1px solid rgba(255,223,0,.5);
+}
+
+footer h3 {
+    color: var(--yellow);
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(19px, 4vw, 30px);
+    margin-bottom: 20px;
+    animation: lumiere 4s infinite;
+}
+
+footer p {
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+
+/* ==========================================
+   10. RESPONSIVE
+========================================== */
+
+@media (max-width: 650px) {
+
+    header {
+        padding: 0 18px;
+    }
+
+    .header-name {
+        font-size: 18px;
+    }
+
+    .accueil {
+        min-height: 90vh;
+    }
+
+    .logo {
+        max-width: 80%;
+    }
+
+    .devise {
+        font-size: 16px;
+    }
+
+    .actualites,
+    .presentation {
+        padding: 70px 18px;
+    }
+
+    details {
+        padding: 15px;
+    }
+
+    details p {
+        font-size: 14px;
+    }
+
+    nav {
+        width: 100%;
+    }
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-    <!-- ================================= -->
-    <!-- 12. EN-TÊTE ET MENU HAMBURGER     -->
-    <!-- ================================= -->
+<!-- ==========================================
+     11. MENU HAMBURGER
+========================================== -->
 
-    <header class="header">
+<header>
 
-        <a href="#accueil" class="header-logo">
-            ACMH
-        </a>
+    <div class="header-name">ACMH</div>
 
-        <button
-            class="menu-toggle"
+    <button class="menu-toggle"
             id="menuToggle"
             aria-label="Ouvrir le menu"
             aria-expanded="false"
-            aria-controls="menu"
-        >
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+            aria-controls="menu">
 
-        <nav class="menu" id="menu">
+        <span></span>
+        <span></span>
+        <span></span>
 
-            <a href="#accueil">ACCUEIL</a>
+    </button>
 
-            <a href="#actualites">ACTUALITÉS</a>
+    <nav id="menu">
 
-            <a href="#effectifs">EFFECTIFS</a>
+        <a href="#accueil">ACCUEIL</a>
+        <a href="#actualites">ACTUALITÉS</a>
+        <a href="#presentation">QUI SOMMES-NOUS ?</a>
+        <a href="#effectifs">EFFECTIFS</a>
+        <a href="#calendriers">CALENDRIERS</a>
+        <a href="#chronologie">CHRONOLOGIE</a>
 
-            <a href="#calendriers">CALENDRIERS</a>
+    </nav>
 
-            <a href="#chronologie">CHRONOLOGIE</a>
+</header>
 
-            <a href="#presentation">QUI SOMMES-NOUS ?</a>
 
-        </nav>
+<!-- ==========================================
+     12. ACCUEIL
+========================================== -->
 
-    </header>
+<main>
 
+<section class="accueil" id="accueil">
 
+    <img src="LOGO+AIGLE.png"
+         class="logo"
+         alt="Logo de l'ACMH">
 
-    <!-- ================================= -->
-    <!-- 13. PAGE D'ACCUEIL                -->
-    <!-- ================================= -->
+    <h1>ATHLETIC CLUB DE MAGNY-LES-HAMEAUX</h1>
 
-    <main>
+    <p class="devise">
+        Il n'y a pas de secret dans la réussite
+    </p>
 
-        <section class="accueil" id="accueil">
+</section>
 
-            <img
-                src="LOGO+AIGLE.png"
-                alt="Logo de l'ACMH"
-                class="logo-principal"
-            >
 
-            <h1>
-                ATHLETIC CLUB DE MAGNY-LES-HAMEAUX
-            </h1>
+<!-- ==========================================
+     13. ACTUALITÉS
+========================================== -->
 
-            <p class="devise">
-                Il n'y a pas de secret dans la réussite.
-            </p>
+<section class="actualites" id="actualites">
 
-        </section>
+    <h2>ACTUALITÉS</h2>
 
+    <div class="separateur">
+        <span></span>
+        <b>✦</b>
+        <span></span>
+    </div>
 
-
-        <!-- ================================= -->
-        <!-- 14. ACTUALITÉS                    -->
-        <!-- ================================= -->
-
-        <section class="actualites" id="actualites">
-
-            <h2 class="titre-section">
-                ACTUALITÉS
-            </h2>
-
-            <div class="actualite-vide">
-
-                <p>
-                    L'HISTOIRE NE FAIT QUE COMMENCER,
-                    RIEN DE NOTABLE POUR L'INSTANT...
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================================= -->
-        <!-- 15. ACCÈS AUX DIFFÉRENTES RUBRIQUES -->
-        <!-- ================================= -->
-
-        <section class="rubriques">
-
-            <h2 class="titre-section">
-                EXPLORER L'ACMH
-            </h2>
-
-            <div class="rubriques-container">
-
-                <a href="#effectifs" class="rubrique">
-
-                    <h3>EFFECTIFS</h3>
-
-                    <p>
-                        Découvrez les futurs joueurs et les équipes du club.
-                    </p>
-
-                </a>
-
-
-                <a href="#calendriers" class="rubrique">
-
-                    <h3>CALENDRIERS</h3>
-
-                    <p>
-                        Retrouvez les rencontres et les résultats.
-                    </p>
-
-                </a>
-
-
-                <a href="#chronologie" class="rubrique">
-
-                    <h3>CHRONOLOGIE</h3>
-
-                    <p>
-                        Suivez l'histoire et l'évolution du projet.
-                    </p>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================================= -->
-        <!-- 16. QUI SOMMES-NOUS ?             -->
-        <!-- ================================= -->
-
-        <section class="presentation" id="presentation">
-
-            <h2 class="titre-section">
-                QUI SOMMES-NOUS ?
-            </h2>
-
-
-            <details>
-
-                <summary>
-                    QUI SOMMES-NOUS ?
-                </summary>
-
-                <p>
-                    Nous sommes un groupe d'amis passionnés de football.
-                    Nous nous sommes donné le défi de créer le troisième
-                    grand club des Yvelines, dans notre ville,
-                    Magny-les-Hameaux.
-                </p>
-
-            </details>
-
-
-
-            <details>
-
-                <summary>
-                    POURQUOI NOIR ET JAUNE ?
-                </summary>
-
-                <p>
-                    Ces couleurs viennent du blason de la ville,
-                    comme vous pouvez le voir ici.
-                    <br><br>
-
-                    <img
-                        src="Blason_ville_fr_Magny-les-Hameaux_(Yvelines).svg"
-                        alt="Blason de Magny-les-Hameaux"
-                    >
-
-                    <br><br>
-
-                    La partie jaune et noire avec les aiglettes vient
-                    de l'armoirie du premier seigneur de Magny-les-Hameaux.
-
-                    Nous avons alors décidé de reprendre ces couleurs
-                    pour faire une sorte de conquête en tant que seigneurs.
-
-                    Cependant, puisque le noir sur jaune était déjà
-                    associé au Borussia Dortmund, nous avons inversé
-                    ces couleurs.
-                </p>
-
-            </details>
-
-
-
-            <details>
-
-                <summary>
-                    POURQUOI ATHLETIC CLUB DE MAGNY-LES-HAMEAUX ?
-                </summary>
-
-                <p>
-                    Nous avons choisi ce nom car le
-                    "Magny Football Club" étant déjà pris,
-                    il a fallu trouver un autre nom.
-
-                    Pour cela, nous nous sommes inspirés du Milan AC
-                    ou encore de l'Atlético de Madrid, deux clubs
-                    que nous respectons par-dessus tout.
-                </p>
-
-            </details>
-
-
-
-            <details>
-
-                <summary>
-                    UN PROJET SUR COMBIEN DE TEMPS ? QUELS OBJECTIFS ?
-                </summary>
-
-                <p>
-                    Tout d'abord, il faut savoir que vous n'êtes pas
-                    prêts de voir le club jouer son premier match car
-                    nous n'avons pour le moment pas fait de démarches
-                    administratives pour la création de l'ACMH.
-
-                    Cependant, nous nous sommes donné pour défi
-                    d'être pensionnaires de National 2 vers 2040.
-
-                    Un grand défi car nous ne connaissons pas
-                    la division dans laquelle nous allons débuter.
-
-                    Nous aimerions débuter au plus tôt,
-                    si possible dans quatre ans.
-                </p>
-
-            </details>
-
-
-
-            <details>
-
-                <summary>
-                    DES IDÉES D'INVESTISSEMENTS FUTURS ?
-                </summary>
-
-                <p>
-                    Oui. Nous aimerions avoir notre propre stade
-                    pour notre arrivée en division nationale.
-
-                    Ce stade serait au plus près de Magny-les-Hameaux.
-
-                    Il sera évidemment pensé pour l'écologie ainsi
-                    que pour la protection de l'écosystème des environs.
-
-                    Aucune démarche n'a été lancée pour le moment
-                    concernant le stade.
-                </p>
-
-            </details>
-
-
-
-            <details>
-
-                <summary>
-                    QUELLE POLITIQUE DE RECRUTEMENT ?
-                </summary>
-
-                <p>
-                    Nous aimerions mettre en place une politique de
-                    recrutement tournée vers les Magnycois,
-                    surtout les jeunes.
-
-                    Cependant, nous voulons avoir des effectifs
-                    d'un niveau très élevé pour pouvoir être
-                    le plus compétitifs possible et atteindre
-                    nos objectifs.
-
-                    Au niveau des recrutements, nous serons ouverts
-                    à toutes les arrivées.
-                </p>
-
-            </details>
-
-        </section>
-
-
-
-        <!-- ================================= -->
-        <!-- 17. EFFECTIFS                     -->
-        <!-- ================================= -->
-
-        <section class="en-preparation" id="effectifs">
-
-            <h2 class="titre-section">
-                EFFECTIFS
-            </h2>
-
-            <p>
-                Les futurs effectifs de l'ACMH seront présentés ici.
-                <br>
-                Cette rubrique est en préparation.
-            </p>
-
-        </section>
-
-
-
-        <!-- ================================= -->
-        <!-- 18. CALENDRIERS                   -->
-        <!-- ================================= -->
-
-        <section class="en-preparation" id="calendriers">
-
-            <h2 class="titre-section">
-                CALENDRIERS
-            </h2>
-
-            <p>
-                Les futurs calendriers et résultats seront présentés ici.
-                <br>
-                Cette rubrique est en préparation.
-            </p>
-
-        </section>
-
-
-
-        <!-- ================================= -->
-        <!-- 19. CHRONOLOGIE                   -->
-        <!-- ================================= -->
-
-        <section class="en-preparation" id="chronologie">
-
-            <h2 class="titre-section">
-                CHRONOLOGIE
-            </h2>
-
-            <p>
-                Découvrez les grandes étapes de l'histoire de l'ACMH.
-                <br>
-                Cette rubrique est en préparation.
-            </p>
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- ================================= -->
-    <!-- 20. PIED DE PAGE                  -->
-    <!-- ================================= -->
-
-    <footer>
+    <div class="actualite-carte">
 
         <p>
-            CECI N'EST PAS UN SITE,
-            C'EST UNE HISTOIRE.
+            L'HISTOIRE NE FAIT QUE COMMENCER,
+            RIEN DE NOTABLE POUR L'INSTANT...
         </p>
 
-        <small>
-            ATHLETIC CLUB DE MAGNY-LES-HAMEAUX
-        </small>
+    </div>
 
-        <br><br>
-
-        <small>
-            © ACMH - Tous droits réservés
-        </small>
-
-    </footer>
+</section>
 
 
+<!-- ==========================================
+     14. PRÉSENTATION
+========================================== -->
 
-    <!-- ================================= -->
-    <!-- 21. JAVASCRIPT : MENU HAMBURGER   -->
-    <!-- ================================= -->
+<section class="presentation" id="presentation">
 
-    <script>
+    <h2>FAQ</h2>
 
-        const menuToggle = document.getElementById("menuToggle");
+    <div class="separateur">
+        <span></span>
+        <b>✦</b>
+        <span></span>
+    </div>
 
-        const menu = document.getElementById("menu");
+    <details>
 
+        <summary>QUI SOMMES-NOUS ?</summary>
 
-        // OUVRIR OU FERMER LE MENU
+        <p>
+            Nous sommes un groupe d'amis passionnés de football.
+            Nous nous sommes donnés en défi de créer le 3e grand
+            club des Yvelines, dans notre ville,
+            Magny-les-Hameaux.
+        </p>
 
-        function fermerMenu() {
-
-            menu.classList.remove("active");
-
-            menuToggle.classList.remove("active");
-
-            menuToggle.setAttribute("aria-expanded", "false");
-
-            menuToggle.setAttribute("aria-label", "Ouvrir le menu");
-
-        }
-
-
-        function basculerMenu() {
-
-            const ouvert = menu.classList.toggle("active");
-
-            menuToggle.classList.toggle("active", ouvert);
-
-            menuToggle.setAttribute("aria-expanded", ouvert);
-
-            menuToggle.setAttribute(
-                "aria-label",
-                ouvert ? "Fermer le menu" : "Ouvrir le menu"
-            );
-
-        }
+    </details>
 
 
-        // CLIC SUR LES TROIS BARRES
+    <details>
 
-        menuToggle.addEventListener("click", basculerMenu);
+        <summary>POURQUOI NOIR ET JAUNE ?</summary>
 
+        <p>
+            Ces couleurs viennent du blason du club comme vous
+            pouvez le voir ici.
 
-        // FERMER LE MENU APRÈS AVOIR CHOISI UNE RUBRIQUE
+            <br><br>
 
-        menu.querySelectorAll("a").forEach(lien => {
+            <img src="Blason_ville_fr_Magny-les-Hameaux_(Yvelines).svg"
+                 alt="Blason de Magny-les-Hameaux">
 
-            lien.addEventListener("click", fermerMenu);
+            <br><br>
 
-        });
+            La partie jaune et noire avec les aiglettes vient
+            de l'armoirie du premier seigneur de Magny-les-Hameaux.
+            Nous avons alors décidé de reprendre ces couleurs pour
+            faire une sorte de "conquête" en tant que seigneurs.
 
+            Cependant, vu que le noir sur jaune était déjà pris
+            par le Borussia Dortmund, nous avons inversé ces couleurs.
+        </p>
 
-        // FERMER LE MENU EN CLIQUANT À L'EXTÉRIEUR
-
-        document.addEventListener("click", function(event) {
-
-            if (
-                !menu.contains(event.target) &&
-                !menuToggle.contains(event.target)
-            ) {
-
-                fermerMenu();
-
-            }
-
-        });
+    </details>
 
 
-        // FERMER LE MENU AVEC LA TOUCHE ÉCHAP
+    <details>
 
-        document.addEventListener("keydown", function(event) {
+        <summary>POURQUOI ATHLETIC CLUB DE MAGNY-LES-HAMEAUX ?</summary>
 
-            if (event.key === "Escape") {
+        <p>
+            On a choisi ce nom car le "Magny Football Club"
+            étant déjà pris, il a fallu trouver un autre nom.
 
-                fermerMenu();
+            Pour cela on s'est inspiré du Milan AC ou encore
+            de l'Atlético de Madrid, deux clubs qu'on respecte
+            par-dessus tout, pour se nommer Athletic Club
+            de Magny-les-Hameaux.
+        </p>
 
-            }
+    </details>
 
-        });
 
-    </script>
+    <details>
 
+        <summary>UN PROJET SUR COMBIEN DE TEMPS, QUELS OBJECTIFS ?</summary>
+
+        <p>
+            Tout d'abord il faut savoir que vous n'êtes pas prêts
+            de voir le club jouer son premier match car nous n'avons
+            pour le moment pas fait de démarche administrative
+            pour la création de l'ACMH.
+
+            Cependant nous nous sommes donné pour défi d'être
+            pensionnaires de National 2 vers 2040.
+
+            Un grand défi car nous ne connaissons pas la division
+            dans laquelle nous allons débuter.
+
+            Nous aimerions débuter au plus tôt, si possible
+            dans quatre ans.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>DES IDÉES D'INVESTISSEMENTS FUTURS ?</summary>
+
+        <p>
+            Oui. Nous aimerions avoir notre propre stade pour
+            notre arrivée en division Nationale.
+
+            Ce stade serait au plus près de Magny-les-Hameaux.
+            Il sera évident qu'il sera pensé pour l'écologie
+            ainsi que pour la protection de l'écosystème des environs.
+
+            Aucune démarche lancée pour le moment pour le stade.
+        </p>
+
+    </details>
+
+
+    <details>
+
+        <summary>AU NIVEAU DES EFFECTIFS, QUELLE POLITIQUE DE RECRUTEMENT OU DE LICENCIEMENT SERA APPLIQUÉE ?</summary>
+
+        <p>
+            Nous aimerions nous livrer à une politique de recrutement
+            tournée vers les Magnycois, surtout les jeunes.
+
+            Cependant nous voulons avoir des effectifs à un niveau
+            très élevé pour pouvoir être le plus compétitifs possible
+            et atteindre nos objectifs.
+
+            Au niveau des recrutements on sera ouvert à toutes arrivées.
+        </p>
+
+    </details>
+
+</section>
+
+
+<!-- ==========================================
+     15. RUBRIQUES FUTURES
+========================================== -->
+
+<section class="presentation" id="effectifs">
+
+    <h2>EFFECTIFS</h2>
+
+    <div class="separateur">
+        <span></span><b>✦</b><span></span>
+    </div>
+
+    <p class="titre-graffiti">
+        L'AVENIR SE CONSTRUIT ENSEMBLE.
+    </p>
+
+</section>
+
+
+<section class="presentation" id="calendriers">
+
+    <h2>CALENDRIERS</h2>
+
+    <div class="separateur">
+        <span></span><b>✦</b><span></span>
+    </div>
+
+    <p class="titre-graffiti">
+        CHAQUE MATCH ÉCRIT UNE PAGE.
+    </p>
+
+</section>
+
+
+<section class="presentation" id="chronologie">
+
+    <h2>CHRONOLOGIE</h2>
+
+    <div class="separateur">
+        <span></span><b>✦</b><span></span>
+    </div>
+
+    <p class="titre-graffiti">
+        L'HISTOIRE NE FAIT QUE COMMENCER.
+    </p>
+
+</section>
+
+</main>
+
+
+<!-- ==========================================
+     16. SIGNATURE
+========================================== -->
+
+<footer>
+
+    <h3>CECI N'EST PAS UN SITE, C'EST UNE HISTOIRE.</h3>
+
+    <p>ATHLETIC CLUB DE MAGNY-LES-HAMEAUX</p>
+
+    <br>
+
+    <p>© ACMH — TOUS DROITS RÉSERVÉS</p>
+
+</footer>
+
+
+<!-- ==========================================
+     17. JAVASCRIPT : MENU HAMBURGER
+========================================== -->
+
+<script>
+
+const bouton = document.getElementById("menuToggle");
+const menu = document.getElementById("menu");
+
+function fermerMenu() {
+    menu.classList.remove("active");
+    bouton.classList.remove("active");
+    bouton.setAttribute("aria-expanded", "false");
+    bouton.setAttribute("aria-label", "Ouvrir le menu");
+}
+
+bouton.addEventListener("click", function() {
+
+    const ouvert = menu.classList.toggle("active");
+
+    bouton.classList.toggle("active", ouvert);
+
+    bouton.setAttribute("aria-expanded", ouvert);
+
+    bouton.setAttribute(
+        "aria-label",
+        ouvert ? "Fermer le menu" : "Ouvrir le menu"
+    );
+
+});
+
+menu.querySelectorAll("a").forEach(lien => {
+
+    lien.addEventListener("click", fermerMenu);
+
+});
+
+document.addEventListener("click", function(event) {
+
+    if (
+        !menu.contains(event.target) &&
+        !bouton.contains(event.target)
+    ) {
+        fermerMenu();
+    }
+
+});
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        fermerMenu();
+    }
+
+});
+
+</script>
 
 </body>
-
 </html>
