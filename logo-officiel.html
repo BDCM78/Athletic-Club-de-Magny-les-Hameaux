@@ -1,113 +1,335 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Premier logo officiel - ACMH</title>
 
     <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            padding: 30px;
+
+        /* BASE DU SITE */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            background-color: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* IMAGE DE COUVERTURE */
+
+        .image-titre {
+            width: 100%;
+            height: 480px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-titre img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .image-titre::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 25%,
+                rgba(0,0,0,0.3) 55%,
+                #000 100%
+            );
+        }
+
+        /* CONTENU DE L'ARTICLE */
+
         .article {
-            max-width: 900px;
-            margin: auto;
+            max-width: 1000px;
+            margin: -35px auto 0;
+            padding: 0 25px 50px;
+            position: relative;
+            z-index: 2;
         }
 
         h1 {
             color: #ffcc00;
+            font-size: 34px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
         }
 
-        img {
-            max-width: 100%;
+        .date {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 25px;
         }
+
+        .description {
+            color: white;
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        /* CARROUSEL */
+
+        .carrousel {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto 15px;
+            overflow: hidden;
+        }
+
+        .carrousel img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* FLÈCHES */
+
+        .fleche {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: #ffcc00;
+            border: none;
+            font-size: 32px;
+            padding: 15px 19px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 3;
+        }
+
+        .fleche:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .fleche.gauche {
+            left: 0;
+        }
+
+        .fleche.droite {
+            right: 0;
+        }
+
+        /* POINTS DE NAVIGATION */
+
+        .points {
+            text-align: center;
+            margin: 20px 0 40px;
+        }
+
+        .points span {
+            display: inline-block;
+            color: #666;
+            font-size: 17px;
+            margin: 0 7px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .points span:hover {
+            color: #ffcc00;
+        }
+
+        .points span.actif {
+            color: #ffcc00;
+        }
+
+        /* RETOUR */
+
+        .retour {
+            display: inline-block;
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .retour:hover {
+            color: white;
+        }
+
+        /* VERSION TÉLÉPHONE */
+
+        @media (max-width: 600px) {
+
+            .image-titre {
+                height: 300px;
+            }
+
+            .article {
+                padding: 0 18px 35px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .fleche {
+                font-size: 22px;
+                padding: 10px 13px;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
 
+    <!-- IMAGE DE COUVERTURE -->
+
+    <div class="image-titre">
+        <img src="Actu_newlogo1.png" alt="Premier logo officiel de l'ACMH">
+    </div>
+
+
+    <!-- ARTICLE -->
+
     <div class="article">
 
-        <img src="Actu_newlogo1.png" width="1000">
+        <h1>Premier logo "officiel" pour l'ACMH !</h1>
 
-                <h1>Premier logo "officiel" pour l'ACMH !</h1>
-
-        <p>Actualité ACMH | 26 novembre 2026</p>
-
-
-        <p>
-            Découvrez le premier logo officiel de l'Athletic Club
-            Magny-les-Hameaux !
-          <br>
-            Ce logo marque une nouvelle étape dans la construction
-            de l'identité visuelle du club.
-        <br>
-          Ce logo représente l'oeil d'un aigle, symbole du premier seigneur de Magny-les-Hameaux. Il a un regard assez intimidant pour montrer au futurs adversaires notre détermination pour les battres, les "manger" pour un aigle.
-        <br>
-          Le vote de l'Assemblé Générale a été séré jusqu'au bout, il a fallu recourrir à une voix extérieure pour départager les logos, nous remercions sincèrement cette personne.
+        <p class="date">
+            ACTUALITÉ ACMH | 26 NOVEMBRE 2026
         </p>
 
-        
-<div class="carrousel">
+        <p class="description">
 
-    <button class="fleche gauche" onclick="changerImage(-1)">❮</button>
+            Découvrez le premier logo officiel de l'Athletic Club
+            Magny-les-Hameaux !
 
-    <img id="imageActuelle" src="TeasingNewLogo1.png" alt="Présentation du nouveau logo">
+            <br><br>
 
-    <button class="fleche droite" onclick="changerImage(1)">❯</button>
+            Ce logo marque une nouvelle étape dans la construction
+            de l'identité visuelle du club.
 
-</div>
+            <br><br>
 
-<div class="points">
-    <span onclick="afficherImage(0)">●</span>
-    <span onclick="afficherImage(1)">●</span>
-    <span onclick="afficherImage(2)">●</span>
-    <span onclick="afficherImage(3)">●</span>
-    <span onclick="afficherImage(4)">●</span>
-</div>
+            Ce logo représente l'œil d'un aigle, symbole du premier
+            seigneur de Magny-les-Hameaux. Il possède un regard
+            intimidant qui représente notre détermination face
+            à nos futurs adversaires.
+
+            <br><br>
+
+            Le vote de l'Assemblée Générale a été serré jusqu'au bout.
+            Il a fallu recourir à une voix extérieure pour départager
+            les logos. Nous remercions sincèrement cette personne.
+
+        </p>
 
 
-        <a href="index.html">back</a>
+        <!-- CARROUSEL -->
+
+        <div class="carrousel">
+
+            <button class="fleche gauche" onclick="changerImage(-1)">
+                ❮
+            </button>
+
+            <img id="imageActuelle" src="TeasingNewLogo1.png"
+                 alt="Présentation du nouveau logo">
+
+            <button class="fleche droite" onclick="changerImage(1)">
+                ❯
+            </button>
+
+        </div>
+
+
+        <!-- POINTS -->
+
+        <div class="points">
+
+            <span class="actif" onclick="afficherImage(0)">●</span>
+            <span onclick="afficherImage(1)">●</span>
+            <span onclick="afficherImage(2)">●</span>
+            <span onclick="afficherImage(3)">●</span>
+            <span onclick="afficherImage(4)">●</span>
+
+        </div>
+
+
+        <!-- RETOUR -->
+
+        <a href="index.html" class="retour">
+            ← RETOUR AU SITE
+        </a>
 
     </div>
 
-<script>
-    const images = [
-        "TeasingNewLogo1.png",
-        "TeasingNewLogo2.png",
-        "TeasingNewLogo3.png",
-        "TeasingNewLogo4.png",
-        "TeasingNewLogo5.png"
-    ];
 
-    let indexActuel = 0;
+    <!-- JAVASCRIPT DU CARROUSEL -->
 
-    function afficherImage(index) {
-        indexActuel = index;
-        document.getElementById("imageActuelle").src = images[indexActuel];
-    }
+    <script>
 
-    function changerImage(direction) {
-        indexActuel += direction;
+        const images = [
+            "TeasingNewLogo1.png",
+            "TeasingNewLogo2.png",
+            "TeasingNewLogo3.png",
+            "TeasingNewLogo4.png",
+            "TeasingNewLogo5.png"
+        ];
 
-        if (indexActuel >= images.length) {
-            indexActuel = 0;
+        let indexActuel = 0;
+
+        function afficherImage(index) {
+
+            indexActuel = index;
+
+            document.getElementById("imageActuelle").src =
+                images[indexActuel];
+
+            const points = document.querySelectorAll(".points span");
+
+            points.forEach((point, i) => {
+                point.classList.toggle("actif", i === indexActuel);
+            });
+
         }
 
-        if (indexActuel < 0) {
-            indexActuel = images.length - 1;
+        function changerImage(direction) {
+
+            indexActuel += direction;
+
+            if (indexActuel >= images.length) {
+                indexActuel = 0;
+            }
+
+            if (indexActuel < 0) {
+                indexActuel = images.length - 1;
+            }
+
+            afficherImage(indexActuel);
+
         }
 
-        afficherImage(indexActuel);
-    }
-</script>
-</body>
-</html>
+    </script>
 
 </body>
+
 </html>
