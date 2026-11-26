@@ -51,27 +51,63 @@
         <br>
           Le vote de l'Assemblé Générale a été séré jusqu'au bout, il a fallu recourrir à une voix extérieure pour départager les logos, nous remercions sincèrement cette personne.
         </p>
-        <div class="carrousel">
 
-    
+        
+<div class="carrousel">
 
-    <img id="imageActuelle" src= "TeasingNewLogo1.png" src= "TeasingNewLogo2.png" src= "TeasingNewLogo3.png" src= "TeasingNewLogo4.png" src= "TeasingNewLogo5.png">
-<button class="fleche gauche" onclick="changerImage(-1)">❮</button>
+    <button class="fleche gauche" onclick="changerImage(-1)">❮</button>
+
+    <img id="imageActuelle" src="TeasingNewLogo1.png" alt="Présentation du nouveau logo">
+
     <button class="fleche droite" onclick="changerImage(1)">❯</button>
 
 </div>
 
 <div class="points">
-    <span onclick="TeasingNewLogo1.png">1</span>
-    <span onclick="TeasingNewLogo2.png">2</span>
-    <span onclick="TeasingNewLogo3.png">3</span>
-    <span onclick="TeasingNewLogo4.png">4</span>
-    <span onclick="TeasingNewLogo5.png">5</span>
+    <span onclick="afficherImage(0)">●</span>
+    <span onclick="afficherImage(1)">●</span>
+    <span onclick="afficherImage(2)">●</span>
+    <span onclick="afficherImage(3)">●</span>
+    <span onclick="afficherImage(4)">●</span>
 </div>
+
 
         <a href="index.html">back</a>
 
     </div>
+
+<script>
+    const images = [
+        "TeasingNewLogo1.png",
+        "TeasingNewLogo2.png",
+        "TeasingNewLogo3.png",
+        "TeasingNewLogo4.png",
+        "TeasingNewLogo5.png"
+    ];
+
+    let indexActuel = 0;
+
+    function afficherImage(index) {
+        indexActuel = index;
+        document.getElementById("imageActuelle").src = images[indexActuel];
+    }
+
+    function changerImage(direction) {
+        indexActuel += direction;
+
+        if (indexActuel >= images.length) {
+            indexActuel = 0;
+        }
+
+        if (indexActuel < 0) {
+            indexActuel = images.length - 1;
+        }
+
+        afficherImage(indexActuel);
+    }
+</script>
+</body>
+</html>
 
 </body>
 </html>
